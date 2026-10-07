@@ -13,8 +13,9 @@ docker-cli: to the daemon through its REST API and the Docker Unix socket to
 docker-cli: build, run and manage containers, images, networks and volumes.
 docker-cli:
 docker-cli: This package is built from the official docker/cli sources and
-docker-cli: also ships the docker-buildx plugin (BuildKit CLI) and shell
-docker-cli: completions for bash, fish and zsh. Slackware 15.0, no systemd.
+docker-cli: also ships the docker-buildx plugin (BuildKit CLI), the
+docker-cli: docker-compose plugin (docker compose) and shell completions
+docker-cli: for bash, fish and zsh. Slackware 15.0, no systemd.
 docker-cli:
 docker-cli:
 docker-cli: Home: https://docs.docker.com/engine/reference/commandline/cli/

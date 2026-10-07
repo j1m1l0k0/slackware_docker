@@ -4,7 +4,8 @@
 # Author: j1m1l0k0 - 2026
 # Testes automáticos de pós-instalação (sem systemd):
 #   docker version, docker info (cgroup/storage), hello-world,
-#   docker buildx version e um build Dockerfile mínimo com `docker build`.
+#   docker buildx version, docker compose version e um build Dockerfile
+#   mínimo com `docker build` (BuildKit) + compose up/down.
 # Os comandos docker são executados via sudo quando o usuário atual não
 # pertence ao grupo 'docker' (não adicionamos usuários automaticamente).
 # ===========================================================================
@@ -55,6 +56,13 @@ else
   DWARN "buildx indisponível (pacote docker-cli sem plugin buildx?)"
 fi
 
+log "→ docker compose version"
+if D compose version; then
+  DOK "docker compose OK"
+else
+  DWARN "docker compose indisponível (pacote docker-cli sem plugin docker-compose?)"
+fi
+
 log "→ docker build (BuildKit): FROM alpine; RUN echo 'Docker on Slackware works'"
 TMPD="$(mktemp -d)"
 cat > "${TMPD}/Dockerfile" <<'EOF'
@@ -73,6 +81,23 @@ if D run --rm docker-slackware-test echo "Slackware container OK"; then
 else
   DFAIL "container de teste falhou."
 fi
+
+log "→ docker compose up/down (compose.yaml mínimo)"
+TMPC="$(mktemp -d)"
+cat > "${TMPC}/compose.yaml" <<'EOF'
+services:
+  compose-test:
+    image: alpine:latest
+    command: ["sh", "-c", "echo compose-ok && sleep 2"]
+EOF
+if D compose -f "${TMPC}/compose.yaml" up -d >/dev/null 2>&1; then
+  DOK "docker compose up OK"
+  D compose -f "${TMPC}/compose.yaml" down --remove-orphans >/dev/null 2>&1 || true
+  DOK "docker compose down OK"
+else
+  DWARN "docker compose up falhou (ver /var/log/docker.log)"
+fi
+rm -rf "${TMPC}"
 
 D rmi docker-slackware-test >/dev/null 2>&1 || true
 rm -rf "${TMPD}"

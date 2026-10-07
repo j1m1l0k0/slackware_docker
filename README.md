@@ -54,6 +54,7 @@ commit do checkout não bater com o esperado.
 | runc | 1.5.2 | `29dd3dc2…` |
 | BuildKit | 0.33.1 | `8c91502c…` |
 | Buildx (plugin do CLI) | 0.37.2 | `2d379c0c…` |
+| Docker Compose (plugin do CLI) | 5.6.0 | `42f48072…` |
 | docker-init (tini) | 0.19.0 | `de40ad00…` |
 | Go (toolchain) | 1.26.8 | sha256 `d0f743b3…` (go.dev) |
 
@@ -147,7 +148,7 @@ commit, builds sequenciais (memória), e os comandos `go build` replicam os
 | buildkitd | estático + seccomp | **dinâmico** + seccomp | idem |
 | docker engine/proxy | dinâmico | dinâmico | igual ao oficial |
 | containerd/ctr/shim | estático | estático | `libc.a` presente ✓ |
-| docker cli/buildctl/buildx | estático | estático | puro Go |
+| docker cli/buildctl/buildx/compose | estático | estático | puro Go |
 
 ## 7. Como instalar
 
@@ -295,15 +296,16 @@ docker-slackware/
 │   ├── build-runc.sh            # runc
 │   ├── build-containerd.sh      # containerd (estático)
 │   ├── build-moby.sh            # dockerd + docker-proxy + docker-init
-│   ├── build-cli.sh             # docker CLI (+ completions)
+│   ├── build-cli.sh             # docker CLI (+ buildx e compose plugins)
 │   ├── build-buildkit.sh        # buildkitd + buildctl
 │   ├── build-buildx.sh          # plugin docker-buildx (vai no pacote docker-cli)
+│   ├── build-compose.sh         # plugin docker-compose (vai no pacote docker-cli)
 │   ├── configure-host.sh        # módulos, sysctl, daemon.json, rc.docker, grupo
 │   ├── install.sh               # installpkg + configuração + start
 │   ├── uninstall.sh             # removepkg + limpeza reversível
 │   └── diagnostics.sh           # docker-diagnostics.txt (sem journalctl)
 ├── slack-desc/                  # descrições de pacote (slack-desc)
 ├── tests/
-│   └── test-docker.sh           # docker info, hello-world, buildx, docker build
+│   └── test-docker.sh           # docker info, hello-world, buildx, compose, build
 └── packages/                    # .txz + CHECKSUMS.sha256 + manifest + backups
 ```

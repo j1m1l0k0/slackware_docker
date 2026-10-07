@@ -95,13 +95,13 @@ else
     echo "Instale com: slackpkg install dialog   (ou use --noninteractive)"
     exit 1
   }
-  d_msg "Bem-vindo" "Este instalador vai instalar o Docker Engine ${ENGINE_VERSION}\nCLI ${CLI_VERSION}, containerd ${CONTAINERD_VERSION}, runc ${RUNC_VERSION}\ne BuildKit ${BUILDKIT_VERSION} como pacotes .txz nativos do Slackware.\n\nOs pacotes são instalados com /sbin/installpkg (instalador oficial\ndo Slackware), exibindo os arquivos e o progresso.\n\nSem systemd: o daemon é gerenciado por /etc/rc.d/rc.docker.\n\nContinuar?"
+  d_msg "Bem-vindo" "Este instalador vai instalar o Docker Engine ${ENGINE_VERSION}\nCLI ${CLI_VERSION}, containerd ${CONTAINERD_VERSION}, runc ${RUNC_VERSION}\ne BuildKit ${BUILDKIT_VERSION} (com plugins buildx ${BUILDX_VERSION}\ne docker compose ${COMPOSE_VERSION}) como pacotes .txz nativos do Slackware.\n\nOs pacotes são instalados com /sbin/installpkg (instalador oficial\ndo Slackware), exibindo os arquivos e o progresso.\n\nSem systemd: o daemon é gerenciado por /etc/rc.d/rc.docker.\n\nContinuar?"
   SEL="$(dialog --backtitle "${BACKTITLE}" --stdout --title "Componentes" \
     --checklist "Selecione os componentes a instalar:" 0 0 5 \
     runc          "${RUNC_VERSION} - runtime OCI"          on \
     containerd    "${CONTAINERD_VERSION} - runtime Docker" on \
     docker-engine "${ENGINE_VERSION} - daemon dockerd"     on \
-    docker-cli    "${CLI_VERSION} - CLI + plugin buildx"   on \
+    docker-cli    "${CLI_VERSION} - CLI + buildx + compose" on \
     buildkit      "${BUILDKIT_VERSION} - buildkitd+buildctl" on )"
   [ -n "${SEL}" ] || { d_msg "Cancelado" "Nenhum componente selecionado. Instalação cancelada."; exit 1; }
   SELECTED=(${SEL})

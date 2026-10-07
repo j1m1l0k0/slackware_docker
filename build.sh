@@ -12,7 +12,7 @@
 #
 # Uso:
 #   ./build.sh                  # pipeline completa (sem instalar)
-#   ./build.sh <componente>     # compila um único: runc|containerd|moby|cli|buildkit|buildx
+#   ./build.sh <componente>     # compila um único: runc|containerd|moby|cli|buildkit|buildx|compose
 #   ./build.sh check|go|download
 #   ./build.sh install          # atalho para scripts/install.sh
 #   ./build.sh --run-tests      # roda testes Go (full) durante os builds
@@ -32,7 +32,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --run-tests) RUN_TESTS="full" ;;
     --skip-check) SKIP_CHECK=1 ;;
-    check|go|download|runc|containerd|moby|cli|buildkit|buildx|install|all) CMD="$1" ;;
+    check|go|download|runc|containerd|moby|cli|buildkit|buildx|compose|install|all) CMD="$1" ;;
     *) die "Argumento desconhecido: $1 (uso: ./build.sh [componente] [--run-tests] [--skip-check])" ;;
   esac
   shift
@@ -52,7 +52,7 @@ case "${CMD}" in
     [ "${SKIP_CHECK}" = "1" ] || "${BASE_DIR}/scripts/check-system.sh"
     "${BASE_DIR}/scripts/download-sources.sh"
     ;;
-  runc|containerd|moby|cli|buildkit|buildx)
+  runc|containerd|moby|cli|buildkit|buildx|compose)
     [ "${SKIP_CHECK}" = "1" ] || "${BASE_DIR}/scripts/check-system.sh"
     "${BASE_DIR}/scripts/download-sources.sh"
     "${BASE_DIR}/scripts/build-go-toolchain.sh"
@@ -61,6 +61,7 @@ case "${CMD}" in
       containerd) B="build-containerd.sh" ;;
       moby)       B="build-moby.sh" ;;
       buildx)     B="build-buildx.sh" ;;
+      compose)    B="build-compose.sh" ;;
       buildkit)   B="build-buildkit.sh" ;;
       cli)        B="build-cli.sh" ;;
     esac
@@ -76,7 +77,7 @@ case "${CMD}" in
     "${BASE_DIR}/scripts/download-sources.sh"
     init_manifest
     log "=== Compilando todos os componentes (sequencialmente) ==="
-    for s in build-runc build-containerd build-moby build-buildx build-cli build-buildkit; do
+    for s in build-runc build-containerd build-moby build-buildx build-compose build-cli build-buildkit; do
       "${BASE_DIR}/scripts/${s}.sh"
     done
     finalize_manifest

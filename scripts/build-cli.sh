@@ -8,8 +8,9 @@
 #   $GOPATH/src/github.com/docker/cli + `make binary`
 # (scripts/build/binary + scripts/build/.variables, com CGO_ENABLED=0 para
 #  um binário estático puro).
-# O pacote docker-cli também contém o plugin buildx (docker-buildx) na
-# localização oficial /usr/libexec/docker/cli-plugins/ e as completions.
+# O pacote docker-cli também contém os plugins buildx (docker-buildx) e
+# docker-compose (docker-compose) na localização oficial
+# /usr/libexec/docker/cli-plugins/ e as completions.
 # ===========================================================================
 
 set -euo pipefail
@@ -50,6 +51,15 @@ else
   warn "buildx não encontrado em ${BX}; rode scripts/build-buildx.sh antes. docker buildx ficará indisponível."
 fi
 
+# Plugin docker-compose (construído por build-compose.sh) entra no pacote do CLI.
+COMPOSE_BIN="${SRC_DIR}/compose/bin/build/docker-compose"
+if [ -x "${COMPOSE_BIN}" ]; then
+  install -m 0755 "${COMPOSE_BIN}" "${STAGE}/usr/libexec/docker/cli-plugins/docker-compose"
+  ok "Plugin docker-compose incluído em docker-cli."
+else
+  warn "docker-compose não encontrado em ${COMPOSE_BIN}; rode scripts/build-compose.sh antes. docker compose ficará indisponível."
+fi
+
 # Completions (contrib/completion do próprio projeto)
 if [ -d "${CLI_DIR}/contrib/completion/bash" ]; then
   install -m 0644 "${CLI_DIR}/contrib/completion/bash/docker" "${STAGE}/usr/share/bash-completion/completions/docker"
@@ -64,6 +74,6 @@ fi
 install_slack_desc docker-cli "${STAGE}"
 make_pkg "docker-cli-${CLI_VERSION}" "${STAGE}"
 
-manifest_add "Docker CLI: ${CLI_VERSION} (${CLI_COMMIT}) [static, GOPATH mode; com buildx ${BUILDX_VERSION}]"
+manifest_add "Docker CLI: ${CLI_VERSION} (${CLI_COMMIT}) [static, GOPATH mode; com buildx ${BUILDX_VERSION} e docker compose ${COMPOSE_VERSION}]"
 ok "docker-cli ${CLI_VERSION} compilado e empacotado."
 exit 0

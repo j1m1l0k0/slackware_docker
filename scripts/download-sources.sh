@@ -44,6 +44,7 @@ FETCH_ONE "${CONTAINERD_URL}" "${CONTAINERD_TAG}" containerd "${CONTAINERD_COMMI
 FETCH_ONE "${RUNC_URL}" "${RUNC_TAG}" runc "${RUNC_COMMIT}"
 FETCH_ONE "${BUILDKIT_URL}" "${BUILDKIT_TAG}" buildkit "${BUILDKIT_COMMIT}"
 FETCH_ONE "${BUILDX_URL}" "${BUILDX_TAG}" buildx "${BUILDX_COMMIT}"
+FETCH_ONE "${COMPOSE_URL}" "${COMPOSE_TAG}" compose "${COMPOSE_COMMIT}"
 FETCH_ONE "${TINI_URL}" "${TINI_TAG}" tini "${TINI_COMMIT}"
 
 # GOPATH mode para o cli (sem go.mod na raiz; usa vendor.mod + vendor/).

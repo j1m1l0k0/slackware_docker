@@ -156,6 +156,7 @@ init_manifest() {
       printf 'runc: %s\n' "${RUNC_VERSION:-}"
       printf 'BuildKit: %s\n' "${BUILDKIT_VERSION:-}"
       printf 'Buildx (plugin): %s\n' "${BUILDX_VERSION:-}"
+      printf 'Compose (plugin): %s\n' "${COMPOSE_VERSION:-}"
       printf 'Go: %s\n' "${GO_VERSION:-}"
       printf 'docker-init (tini): %s\n' "${TINI_VERSION:-}"
       printf 'Kernel: %s\n' "$(uname -r)"
@@ -168,7 +169,7 @@ init_manifest() {
 finalize_manifest() {
   manifest_add "--- commits verificados nos fontes ---"
   local spec dir tag
-  for spec in "moby:${SRC_DIR}/moby" "cli:${SRC_DIR}/cli" "containerd:${SRC_DIR}/containerd" "runc:${SRC_DIR}/runc" "buildkit:${SRC_DIR}/buildkit" "buildx:${SRC_DIR}/buildx" "tini:${SRC_DIR}/tini"; do
+  for spec in "moby:${SRC_DIR}/moby" "cli:${SRC_DIR}/cli" "containerd:${SRC_DIR}/containerd" "runc:${SRC_DIR}/runc" "buildkit:${SRC_DIR}/buildkit" "buildx:${SRC_DIR}/buildx" "compose:${SRC_DIR}/compose" "tini:${SRC_DIR}/tini"; do
     name="${spec%%:*}"
     dir="${spec#*:}"
     if [ -d "${dir}/.git" ]; then

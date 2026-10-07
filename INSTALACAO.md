@@ -11,7 +11,7 @@ Pacotes incluídos (ordem de dependência):
 | 1 | `runc` | 1.5.2 | runtime OCI de baixo nível |
 | 2 | `containerd` | 2.3.6 | runtime de containers do Docker |
 | 3 | `docker-engine` | 29.8.2 | `dockerd`, `docker-proxy`, `docker-init` |
-| 4 | `docker-cli` | 29.8.2 | CLI `docker` + plugin `docker-buildx` |
+| 4 | `docker-cli` | 29.8.2 | CLI `docker` + plugins `docker-buildx` e `docker-compose` |
 | 5 | `buildkit` | 0.33.1 | `buildkitd` + `buildctl` |
 
 ---
@@ -161,8 +161,9 @@ $ sudo tests/test-docker.sh
 ```
 
 Testes executados: `docker version`, `docker info` (CgroupVersion, Driver,
-RootDir), `docker run --rm hello-world`, `docker buildx version` e um
-`docker build` mínimo (FROM alpine; RUN echo) seguido de `docker run`.
+RootDir), `docker run --rm hello-world`, `docker buildx version`,
+`docker compose version` e um `docker build` mínimo (FROM alpine; RUN echo)
+seguido de `docker run`, além de um `docker compose up/down` mínimo.
 
 Exemplo de execução manual:
 
@@ -171,6 +172,7 @@ $ sudo docker version
 $ sudo docker info --format '{{.ServerVersion}} {{.Driver}} {{json .CgroupVersion}}'
 $ sudo docker run --rm hello-world
 $ sudo docker buildx version
+$ sudo docker compose version
 ```
 
 > Docker 29 no cgroup **v1** é deprecado mas oficialmente suportado até
