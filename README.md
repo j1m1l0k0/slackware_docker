@@ -151,6 +151,8 @@ commit, builds sequenciais (memória), e os comandos `go build` replicam os
 
 ## 7. Como instalar
 
+> 📄 Guia completo passo a passo: **[INSTALACAO.md](INSTALACAO.md)**.
+
 ```console
 $ sudo ./build.sh install
 # ou manualmente:

@@ -1,0 +1,159 @@
+runc-1.5.2-x86_64-1.txz: OK
+containerd-2.3.6-x86_64-1.txz: OK
+
++==============================================================================
+| Upgrading runc-1.5.2-x86_64-1 package using /home/admlinux/docker_ai/docker-slackware/packages/runc-1.5.2-x86_64-1.txz
++==============================================================================
+Pre-installing package runc-1.5.2-x86_64-1...
+Removing package: runc-1.5.2-x86_64-1-upgraded-2026-10-07,17:09:18
+Verifying package runc-1.5.2-x86_64-1.txz.
+Installing package runc-1.5.2-x86_64-1.txz:
+PACKAGE DESCRIPTION:
+# runc (OCI container runtime)
+#
+# runc is a CLI tool for spawning and running containers according to the
+# OCI specification. It is used by containerd and Docker Engine as the
+# low-level runtime that creates and runs the actual container processes.
+#
+# built from the official opencontainers/runc sources with the seccomp
+# and urfave_cli_no_docs build tags for Slackware 15.0 (uses the
+# official pathrslite fallback, as no libpathrs C library exists in
+# Slackware). The binary links against the Slackware libseccomp (no
+# systemd).
+#
+# Home: https://github.com/opencontainers/runc
+Package runc-1.5.2-x86_64-1.txz installed.
+Package runc-1.5.2-x86_64-1 upgraded with new package /home/admlinux/docker_ai/docker-slackware/packages/runc-1.5.2-x86_64-1.txz.
+
++==============================================================================
+| Upgrading containerd-2.3.6-x86_64-1 package using /home/admlinux/docker_ai/docker-slackware/packages/containerd-2.3.6-x86_64-1.txz
++==============================================================================
+Pre-installing package containerd-2.3.6-x86_64-1...
+Removing package: containerd-2.3.6-x86_64-1-upgraded-2026-10-07,17:09:20
+Verifying package containerd-2.3.6-x86_64-1.txz.
+Installing package containerd-2.3.6-x86_64-1.txz:
+PACKAGE DESCRIPTION:
+# containerd (container runtime)
+#
+# containerd is an industry-standard container runtime that manages
+# the complete container lifecycle on a host: image transfer and
+# storage, container execution and supervision, low-level storage
+# and network attachments. Docker Engine uses it as its runtime.
+#
+# This package provides the statically linked binaries containerd,
+# containerd-shim-runc-v2, ctr and containerd-stress, built from
+# the official sources for Slackware 15.0 (no systemd).
+#
+# Home: https://containerd.io/
+Package containerd-2.3.6-x86_64-1.txz installed.
+Package containerd-2.3.6-x86_64-1 upgraded with new package /home/admlinux/docker_ai/docker-slackware/packages/containerd-2.3.6-x86_64-1.txz.
+
++==============================================================================
+| Upgrading docker-engine-29.8.2-x86_64-1 package using /home/admlinux/docker_ai/docker-slackware/packages/docker-engine-29.8.2-x86_64-1.txz
++==============================================================================
+Pre-installing package docker-engine-29.8.2-x86_64-1...
+Removing package: docker-engine-29.8.2-x86_64-1-upgraded-2026-10-07,17:09:28
+Verifying package docker-engine-29.8.2-x86_64-1.txz.
+Installing package docker-engine-29.8.2-x86_64-1.txz:
+PACKAGE DESCRIPTION:
+# docker-engine (Docker Engine daemon)
+#
+# dockerd is the Docker daemon, the core of the Docker container
+# platform. It manages containers, images, networks and volumes
+# using the containerd and runc runtimes, and exposes a stable
+# REST API and the Docker Unix socket.
+#
+# This package is built from the official moby sources for
+# Slackware 15.0 (no systemd). It includes dockerd, docker-proxy
+# and docker-init (tini).
+#
+# Home: https://www.docker.com/ (moby https://github.com/moby/moby)
+Executing install script for docker-engine-29.8.2-x86_64-1.txz.
+Package docker-engine-29.8.2-x86_64-1.txz installed.
+Package docker-engine-29.8.2-x86_64-1 upgraded with new package /home/admlinux/docker_ai/docker-slackware/packages/docker-engine-29.8.2-x86_64-1.txz.
+
++==============================================================================
+| Upgrading docker-cli-29.8.2-x86_64-1 package using /home/admlinux/docker_ai/docker-slackware/packages/docker-cli-29.8.2-x86_64-1.txz
++==============================================================================
+Pre-installing package docker-cli-29.8.2-x86_64-1...
+Removing package: docker-cli-29.8.2-x86_64-1-upgraded-2026-10-07,17:09:38
+Verifying package docker-cli-29.8.2-x86_64-1.txz.
+Installing package docker-cli-29.8.2-x86_64-1.txz:
+PACKAGE DESCRIPTION:
+# docker-cli (Docker command line client)
+#
+# docker is the command line client for the Docker Engine. It talks
+# to the daemon through its REST API and the Docker Unix socket to
+# build, run and manage containers, images, networks and volumes.
+#
+# This package is built from the official docker/cli sources and
+# also ships the docker-buildx plugin (BuildKit CLI) and shell
+# completions for bash, fish and zsh. Slackware 15.0, no systemd.
+#
+# Home: https://docs.docker.com/engine/reference/commandline/cli/
+Package docker-cli-29.8.2-x86_64-1.txz installed.
+Package docker-cli-29.8.2-x86_64-1 upgraded with new package /home/admlinux/docker_ai/docker-slackware/packages/docker-cli-29.8.2-x86_64-1.txz.
+
++==============================================================================
+| Upgrading buildkit-0.33.1-x86_64-1 package using /home/admlinux/docker_ai/docker-slackware/packages/buildkit-0.33.1-x86_64-1.txz
++==============================================================================
+Pre-installing package buildkit-0.33.1-x86_64-1...
+Removing package: buildkit-0.33.1-x86_64-1-upgraded-2026-10-07,17:09:47
+Verifying package buildkit-0.33.1-x86_64-1.txz.
+Installing package buildkit-0.33.1-x86_64-1.txz:
+PACKAGE DESCRIPTION:
+# buildkit (build engine for Docker/OCI)
+#
+# BuildKit is a modern build engine for container images, based on
+# Moby and used by Docker as the default builder. It can run as a
+# standalone daemon (buildkitd) and exposes the buildctl command line.
+#
+# This package provides the buildkitd daemon and the buildctl CLI,
+# built from the official moby/buildkit sources for Slackware 15.0
+# (buildkitd with seccomp support, linked to the Slackware libseccomp;
+# no systemd).
+#
+# Home: https://github.com/moby/buildkit
+Package buildkit-0.33.1-x86_64-1.txz installed.
+Package buildkit-0.33.1-x86_64-1 upgraded with new package /home/admlinux/docker_ai/docker-slackware/packages/buildkit-0.33.1-x86_64-1.txz.
+[1;34m[*][0m Carregando módulos de kernel necessários
+[1;34m[*][0m   módulo overlay carregado
+[1;34m[*][0m   módulo br_netfilter carregado
+[1;34m[*][0m   módulo bridge carregado
+[1;34m[*][0m   módulo ip_tables carregado
+[1;34m[*][0m   módulo iptable_nat carregado
+[1;34m[*][0m   módulo iptable_filter carregado
+[1;34m[*][0m   módulo nf_nat carregado
+[1;34m[*][0m   módulo nf_conntrack carregado
+[1;34m[*][0m   módulo xt_MASQUERADE carregado
+[1;34m[*][0m   módulo xt_addrtype carregado
+[1;34m[*][0m   módulo ip6_tables carregado
+[1;34m[*][0m   módulo veth carregado
+[1;34m[*][0m Configurando sysctl (/etc/sysctl.d/99-docker.conf)
+[1;34m[*][0m Backup criado: /etc/sysctl.d/99-docker.conf -> /home/admlinux/docker_ai/docker-slackware/packages/backups/20261007-170954-_etc_sysctl.d_99-docker.conf
+[1;34m[*][0m   removendo entrada anterior docker-slackware para recriar
+[1;34m[*][0m Aplicando sysctl imediatamente
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+[1;34m[*][0m Criando diretórios de dados
+[1;34m[*][0m Backup criado: /etc/docker/daemon.json -> /home/admlinux/docker_ai/docker-slackware/packages/backups/20261007-170954-_etc_docker_daemon.json
+[1;33m[!][0m /etc/docker/daemon.json já existe: NÃO foi modificado (backup em /home/admlinux/docker_ai/docker-slackware/packages/backups). Se precisar da configuração padrão do projeto, copie de config/daemon.json manualmente.
+[1;34m[*][0m Backup criado: /etc/rc.d/rc.docker -> /home/admlinux/docker_ai/docker-slackware/packages/backups/20261007-170954-_etc_rc.d_rc.docker
+[1;34m[*][0m Instalando /etc/rc.d/rc.docker
+[1;34m[*][0m Habilitando docker no boot via /etc/rc.d/rc.local
+[1;34m[*][0m Backup criado: /etc/rc.d/rc.local -> /home/admlinux/docker_ai/docker-slackware/packages/backups/20261007-170954-_etc_rc.d_rc.local
+[1;34m[*][0m   rc.local já possui o bloco docker-slackware
+[1;32m[OK][0m Grupo 'docker' já existe
+[1;34m[*][0m 
+Instrução para o primeiro usuário UTF-8 correto:
+  sudo usermod -aG docker <usuario>
+AVISO DE SEGURANÇA: pertencer ao grupo docker equivale, na prática, a
+possuir privilégios elevados sobre o host (root sem senha para o socket
+do daemon). Apenas adicione usuários em quem confia.
+
+[1;32m[OK][0m Configuração do host concluída.
+Docker já está em execução (PID 104986).
+Docker está em execução (PID 104986).
+Socket da API: /var/run/docker.sock
