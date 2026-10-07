@@ -1,0 +1,26 @@
+Docker Engine: 29.8.2
+Docker CLI: 29.8.2
+containerd: 2.3.6
+runc: 1.5.2
+BuildKit: 0.33.1
+Buildx (plugin): 0.37.2
+Go: 1.26.8
+docker-init (tini): v0.19.0
+Kernel: 5.15.19
+Architecture: x86_64
+Build date: 2026-10-07T18:52:59Z
+runc: 1.5.2 (29dd3dc2b13b4123162e5fe132504bb4b15569f1) [tags: seccomp urfave_cli_no_docs; sem libpathrs -> fallback pathrslite; dinâmico: libseccomp.so]
+containerd: 2.3.6 (ee2735368117d2eb259779949d5e75cdafec9761) [estático: 1]
+Docker Engine: 29.8.2 (8af9fe3a36bab3e039862a2ab1cef1880c9b4d03) dockerd/docker-proxy dynamic, docker-init=tini-v0.19.0
+Docker CLI: 29.8.2 (7fc2dff9bceb96b266a3b2c3117c0955a0d9e616) [static, GOPATH mode; com buildx 0.37.2]
+BuildKit: 0.33.1 (8c91502cf280bd70a0c50912ce251c46a8881d9f) [buildkitd dinâmico/com seccomp; buildctl estático]
+--- commits verificados nos fontes ---
+moby: HEAD 8af9fe3a36bab3e039862a2ab1cef1880c9b4d03
+cli: HEAD 7fc2dff9bceb96b266a3b2c3117c0955a0d9e616
+containerd: HEAD ee2735368117d2eb259779949d5e75cdafec9761
+runc: HEAD 29dd3dc2b13b4123162e5fe132504bb4b15569f1
+buildkit: HEAD 8c91502cf280bd70a0c50912ce251c46a8881d9f
+buildx: HEAD 2d379c0c3f22da0d2759d132a0ec81ca949098f0
+tini: HEAD de40ad007797e0dcd8b7126f27bb87401d224240
+Build date (fim): 2026-10-07T19:22:25Z
+runc: 1.5.2 (29dd3dc2b13b4123162e5fe132504bb4b15569f1) [tags: seccomp urfave_cli_no_docs; sem libpathrs -> fallback pathrslite; dinâmico: libseccomp.so]

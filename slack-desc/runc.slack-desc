@@ -1,0 +1,22 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+         |-----handy-ruler------------------------------------------------------|
+runc: runc (OCI container runtime)
+runc:
+runc: runc is a CLI tool for spawning and running containers according to the
+runc: OCI specification. It is used by containerd and Docker Engine as the
+runc: low-level runtime that creates and runs the actual container processes.
+runc:
+runc: built from the official opencontainers/runc sources with the seccomp
+runc: and urfave_cli_no_docs build tags for Slackware 15.0 (uses the
+runc: official pathrslite fallback, as no libpathrs C library exists in
+runc: Slackware). The binary links against the Slackware libseccomp (no
+runc: systemd).
+runc:
+runc:
+runc: Home: https://github.com/opencontainers/runc

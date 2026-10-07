@@ -1,0 +1,160 @@
+#!/bin/bash
+# ===========================================================================
+# /etc/rc.d/rc.docker - Docker daemon (dockerd) para Slackware 15.0
+# Modelo tradicional de init do Slackware (sem systemd).
+#
+# Uso:
+#   /etc/rc.d/rc.docker start | stop | restart | status
+#
+# Para iniciar na inicialização, o script instalador adiciona uma entrada no
+# /etc/rc.d/rc.local. Torne este arquivo sem permissão de execução para
+# desabilitar o start automático (recomendado se quiser controle manual).
+# ===========================================================================
+
+DAEMON="dockerd"
+PIDFILE="/run/docker.pid"
+LOGFILE="/var/log/docker.log"
+CONFFILE="/etc/docker/daemon.json"
+DOCKER_SOCKET="/var/run/docker.sock"
+WAIT_TIME="45"          # segundos esperando o daemon responder
+
+# O dockerd procura docker-proxy/docker-init/containerd/runc no PATH.
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/libexec/docker"
+export PATH
+
+# Módulos de kernel necessários para rede e storage do Docker.
+NETWORK_MODULES="overlay br_netfilter bridge ip_tables iptable_nat iptable_filter nf_nat nf_conntrack xt_MASQUERADE xt_addrtype ip6_tables veth"
+
+# Argumentos extras opcionais (ex.: --debug ou --iptables=false).
+DOCKERD_ARGS="${DOCKERD_ARGS:-}"
+
+log() { printf 'rc.docker: %s\n' "$*" >> "${LOGFILE}"; }
+
+pid_is_alive() {
+  local pid="$1"
+  [ -n "${pid}" ] && kill -0 "${pid}" 2>/dev/null
+}
+
+daemon_running() {
+  local pid
+  pid="$(cat "${PIDFILE}" 2>/dev/null || true)"
+  pid_is_alive "${pid}"
+}
+
+load_modules() {
+  local m
+  for m in ${NETWORK_MODULES}; do
+    if ! grep -qw "${m}" /proc/modules 2>/dev/null; then
+      if /sbin/modprobe -n "${m}" >/dev/null 2>&1; then
+        /sbin/modprobe "${m}" >/dev/null 2>&1 && log "módulo carregado: ${m}" || log "falha ao carregar: ${m}"
+      else
+        log "módulo indisponível no kernel: ${m}"
+      fi
+    fi
+  done
+}
+
+start() {
+  local pid i
+  if daemon_running; then
+    echo "Docker já está em execução (PID $(cat "${PIDFILE}" 2>/dev/null))."
+    return 1
+  fi
+  if [ -f "${PIDFILE}" ]; then
+    rm -f "${PIDFILE}"
+  fi
+  if [ ! -x "/usr/bin/${DAEMON}" ]; then
+    echo "ERRO: /usr/bin/${DAEMON} não encontrado. Instale o pacote docker-engine primeiro."
+    return 1
+  fi
+  [ -d /var/lib/docker ] || mkdir -p /var/lib/docker
+  [ -d /var/lib/containerd ] || mkdir -p /var/lib/containerd
+
+  load_modules
+
+  echo -n "Iniciando Docker daemon... "
+  if [ -n "${CONFFILE}" ] && [ -r "${CONFFILE}" ]; then
+    /usr/bin/nohup /usr/bin/${DAEMON} --pidfile="${PIDFILE}" --config-file="${CONFFILE}" ${DOCKERD_ARGS} >> "${LOGFILE}" 2>&1 &
+  else
+    /usr/bin/nohup /usr/bin/${DAEMON} --pidfile="${PIDFILE}" ${DOCKERD_ARGS} >> "${LOGFILE}" 2>&1 &
+  fi
+  pid=$!
+  # NÃO pré-escrever o PID file: o dockerd grava o próprio pid nele ao
+  # inicializar. Pré-escrever com o PID do processo em execução faz o
+  # dockerd se recusar a iniciar ("process with PID ... is still running").
+
+  # O dockerd reescreve o PIDFILE; aguarda o socket da API aparecer.
+  i=0
+  while [ "${i}" -lt "${WAIT_TIME}" ]; do
+    if [ -S "${DOCKER_SOCKET}" ]; then
+      echo "OK (PID $(cat "${PIDFILE}" 2>/dev/null || echo "${pid}"))."
+      log "start: daemon pronto (socket ${DOCKER_SOCKET})."
+      return 0
+    fi
+    if ! pid_is_alive "${pid}" && ! pid_is_alive "$(cat "${PIDFILE}" 2>/dev/null || true)"; then
+      echo "FALHOU (o processo terminou; veja ${LOGFILE})."
+      rm -f "${PIDFILE}"
+      return 1
+    fi
+    sleep 1
+    i=$((i + 1))
+  done
+  echo "TIMEOUT esperando o daemon (veja ${LOGFILE})."
+  return 1
+}
+
+stop() {
+  local pid i
+  if ! daemon_running; then
+    echo "Docker não está em execução."
+    rm -f "${PIDFILE}"
+    return 1
+  fi
+  pid="$(cat "${PIDFILE}" 2>/dev/null || true)"
+  echo -n "Parando Docker daemon (PID ${pid})... "
+  kill "${pid}" 2>/dev/null || true
+  i=0
+  while pid_is_alive "${pid}" && [ "${i}" -lt 30 ]; do
+    sleep 1
+    i=$((i + 1))
+  done
+  if pid_is_alive "${pid}"; then
+    echo "forçando KILL... "
+    kill -9 "${pid}" 2>/dev/null || true
+    sleep 1
+  fi
+  rm -f "${PIDFILE}"
+  echo "OK."
+  log "stop: daemon parado."
+  return 0
+}
+
+status() {
+  local pid
+  if daemon_running; then
+    pid="$(cat "${PIDFILE}" 2>/dev/null || true)"
+    echo "Docker está em execução (PID ${pid})."
+    if [ -S "${DOCKER_SOCKET}" ]; then
+      echo "Socket da API: ${DOCKER_SOCKET}"
+    else
+      echo "Aviso: processo vivo, mas ${DOCKER_SOCKET} não existe."
+    fi
+    return 0
+  else
+    echo "Docker não está em execução."
+    [ -e "${PIDFILE}" ] && echo "PID file residual: ${PIDFILE}"
+    return 1
+  fi
+}
+
+case "${1}" in
+  start)   start ;;
+  stop)    stop ;;
+  restart) stop || true
+           start ;;
+  status)  status ;;
+  *)
+    echo "Uso: $0 {start|stop|restart|status}"
+    exit 1
+    ;;
+esac

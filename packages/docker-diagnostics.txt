@@ -1,0 +1,169 @@
+
+===== Data/Hora =====
+Wed Oct  7 16:32:25 -03 2026
+
+===== uname -a / kernel =====
+Linux darkstar 5.15.19 #1 SMP PREEMPT Wed Feb 2 01:50:51 CST 2022 x86_64 11th Gen Intel(R) Core(TM) i7-11700KF @ 3.60GHz GenuineIntel GNU/Linux
+
+===== Slackware =====
+NAME=Slackware
+VERSION="15.0"
+ID=slackware
+
+===== /var/log/docker.log (últimas 200 linhas) =====
+time="2026-10-07T16:32:24.144725980-03:00" level=info msg="Starting up"
+time="2026-10-07T16:32:24.144957479-03:00" level=info msg="Daemon shutdown complete" error="failed to start daemon, ensure docker is not running or delete /run/docker.pid: process with PID 102957 is still running"
+failed to start daemon, ensure docker is not running or delete /run/docker.pid: process with PID 102957 is still running
+
+===== ps aux | grep dockerd =====
+
+===== /proc/cgroups =====
+#subsys_name	hierarchy	num_cgroups	enabled
+cpuset	1	1	1
+cpu	2	1	1
+cpuacct	3	1	1
+blkio	4	1	1
+memory	5	1	1
+devices	6	1	1
+freezer	7	1	1
+net_cls	8	1	1
+perf_event	9	1	1
+net_prio	10	1	1
+pids	11	1	1
+misc	12	1	1
+
+===== mount | grep cgroup =====
+cgroup_root on /sys/fs/cgroup type tmpfs (rw,relatime,size=8192k,mode=755,inode64)
+cpuset on /sys/fs/cgroup/cpuset type cgroup (rw,relatime,cpuset)
+cpu on /sys/fs/cgroup/cpu type cgroup (rw,relatime,cpu)
+cpuacct on /sys/fs/cgroup/cpuacct type cgroup (rw,relatime,cpuacct)
+blkio on /sys/fs/cgroup/blkio type cgroup (rw,relatime,blkio)
+memory on /sys/fs/cgroup/memory type cgroup (rw,relatime,memory)
+devices on /sys/fs/cgroup/devices type cgroup (rw,relatime,devices)
+freezer on /sys/fs/cgroup/freezer type cgroup (rw,relatime,freezer)
+net_cls on /sys/fs/cgroup/net_cls type cgroup (rw,relatime,net_cls)
+perf_event on /sys/fs/cgroup/perf_event type cgroup (rw,relatime,perf_event)
+net_prio on /sys/fs/cgroup/net_prio type cgroup (rw,relatime,net_prio)
+pids on /sys/fs/cgroup/pids type cgroup (rw,relatime,pids)
+misc on /sys/fs/cgroup/misc type cgroup (rw,relatime,misc)
+cgroup on /sys/fs/cgroup/elogind type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/lib64/elogind/elogind-cgroups-agent,name=elogind)
+
+===== mount | grep overlay =====
+
+===== filesystems suportados (overlay) =====
+nodev	cgroup
+nodev	cgroup2
+nodev	overlay
+
+===== iptables -L =====
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+===== iptables -t nat -L =====
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination         
+
+===== sysctl docker/net =====
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+
+===== módulos de kernel carregados (linux relevantes) =====
+xt_addrtype            16384  0
+xt_MASQUERADE          16384  0
+iptable_filter         16384  0
+iptable_nat            16384  0
+nf_nat                 45056  2 iptable_nat,xt_MASQUERADE
+nf_conntrack          151552  2 nf_nat,xt_MASQUERADE
+nf_defrag_ipv6         20480  1 nf_conntrack
+nf_defrag_ipv4         16384  1 nf_conntrack
+ip_tables              36864  2 iptable_filter,iptable_nat
+x_tables               49152  6 iptable_filter,xt_addrtype,ip6_tables,ip_tables,iptable_nat,xt_MASQUERADE
+br_netfilter           32768  0
+bridge                335872  1 br_netfilter
+stp                    16384  1 bridge
+llc                    16384  2 bridge,stp
+overlay               135168  0
+ipv6                  593920  270 bridge,br_netfilter
+
+===== configuração do kernel (funções do Docker) =====
+CONFIG_CGROUPS=y
+CONFIG_MEMCG=y
+CONFIG_NAMESPACES=y
+CONFIG_USER_NS=y
+CONFIG_SECCOMP=y
+CONFIG_BRIDGE_NETFILTER=m
+CONFIG_NF_CONNTRACK=m
+CONFIG_NF_NAT=m
+CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=m
+CONFIG_BRIDGE=m
+CONFIG_VETH=m
+CONFIG_OVERLAY_FS=m
+
+===== cgroup v2? =====
+cgroup v1 (v2 inativo)
+
+===== docker info (se o daemon responder) =====
+(socket /var/run/docker.sock não existe)
+
+===== docker version (se instalado) =====
+Client:
+ Version:           29.8.2
+ API version:       1.56
+ Go version:        go1.26.8
+ Git commit:        7fc2dff
+ Built:             Wed Oct  7 19:10:48 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory
+
+===== espaco em /var/lib/docker =====
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       110G   27G   78G  26% /var/lib/docker
+
+===== dmesg - kernel tail (overlay/bridge/netfilter) =====
+[11578.480746] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[11578.482235] Bridge firewalling registered
+
+===== Manifest do build =====
+Docker Engine: 29.8.2
+Docker CLI: 29.8.2
+containerd: 2.3.6
+runc: 1.5.2
+BuildKit: 0.33.1
+Buildx (plugin): 0.37.2
+Go: 1.26.8
+docker-init (tini): v0.19.0
+Kernel: 5.15.19
+Architecture: x86_64
+Build date: 2026-10-07T18:52:59Z
+runc: 1.5.2 (29dd3dc2b13b4123162e5fe132504bb4b15569f1) [tags: seccomp urfave_cli_no_docs; sem libpathrs -> fallback pathrslite; dinâmico: libseccomp.so]
+containerd: 2.3.6 (ee2735368117d2eb259779949d5e75cdafec9761) [estático: 1]
+Docker Engine: 29.8.2 (8af9fe3a36bab3e039862a2ab1cef1880c9b4d03) dockerd/docker-proxy dynamic, docker-init=tini-v0.19.0
+Docker CLI: 29.8.2 (7fc2dff9bceb96b266a3b2c3117c0955a0d9e616) [static, GOPATH mode; com buildx 0.37.2]
+BuildKit: 0.33.1 (8c91502cf280bd70a0c50912ce251c46a8881d9f) [buildkitd dinâmico/com seccomp; buildctl estático]
+--- commits verificados nos fontes ---
+moby: HEAD 8af9fe3a36bab3e039862a2ab1cef1880c9b4d03
+cli: HEAD 7fc2dff9bceb96b266a3b2c3117c0955a0d9e616
+containerd: HEAD ee2735368117d2eb259779949d5e75cdafec9761
+runc: HEAD 29dd3dc2b13b4123162e5fe132504bb4b15569f1
+buildkit: HEAD 8c91502cf280bd70a0c50912ce251c46a8881d9f
+buildx: HEAD 2d379c0c3f22da0d2759d132a0ec81ca949098f0
+tini: HEAD de40ad007797e0dcd8b7126f27bb87401d224240
+Build date (fim): 2026-10-07T19:22:25Z

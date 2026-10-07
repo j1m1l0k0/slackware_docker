@@ -1,0 +1,20 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+         |-----handy-ruler------------------------------------------------------|
+docker-cli: docker-cli (Docker command line client)
+docker-cli:
+docker-cli: docker is the command line client for the Docker Engine. It talks
+docker-cli: to the daemon through its REST API and the Docker Unix socket to
+docker-cli: build, run and manage containers, images, networks and volumes.
+docker-cli:
+docker-cli: This package is built from the official docker/cli sources and
+docker-cli: also ships the docker-buildx plugin (BuildKit CLI) and shell
+docker-cli: completions for bash, fish and zsh. Slackware 15.0, no systemd.
+docker-cli:
+docker-cli:
+docker-cli: Home: https://docs.docker.com/engine/reference/commandline/cli/

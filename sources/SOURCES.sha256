@@ -1,0 +1,7 @@
+4f76c184a12057a49162044f987656fca9bfb5e569cdb4cfa41e0d1d7471b0dd  sources/buildkit-v0.33.1-8c91502.tar.xz
+2a8791f992478e3774f61db74744e1c29ecb458008cdc7e38b8b2042aa5f796c  sources/buildx-v0.37.2-2d379c0.tar.xz
+353fe5a875f15a736b59e728b698aa14c5283729017f800becf6173ad1d621ef  sources/cli-v29.8.2-7fc2dff.tar.xz
+9f76a4ffa5fc55c78fde0abb13d8d6af4a2a01fdf157a13b1abe6da5a70edc65  sources/containerd-v2.3.6-ee27353.tar.xz
+263fbd6b611d2c7221eaf043539b860eb94ccbd5948738a91b57bc4a1417d3f0  sources/moby-docker-v29.8.2-8af9fe3a.tar.xz
+3e8a98ed2133a64c1d56df1da51100ac04dbaa7fa93c5a32f1b0e5f684bd4f94  sources/runc-v1.5.2-29dd3dc.tar.xz
+c57ebb4556aa4e71d88f74eb1492488c6e827101096040db2050ec7431c9d43a  sources/tini-v0.19.0-de40ad0.tar.xz

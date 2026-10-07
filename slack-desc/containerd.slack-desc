@@ -1,0 +1,20 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+         |-----handy-ruler------------------------------------------------------|
+containerd: containerd (container runtime)
+containerd:
+containerd: containerd is an industry-standard container runtime that manages
+containerd: the complete container lifecycle on a host: image transfer and
+containerd: storage, container execution and supervision, low-level storage
+containerd: and network attachments. Docker Engine uses it as its runtime.
+containerd:
+containerd: This package provides the statically linked binaries containerd,
+containerd: containerd-shim-runc-v2, ctr and containerd-stress, built from
+containerd: the official sources for Slackware 15.0 (no systemd).
+containerd:
+containerd: Home: https://containerd.io/

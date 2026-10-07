@@ -1,0 +1,12 @@
+# Diretórios de trabalho regeneráveis (não versionar)
+work/
+.research/
+toolchain/
+dl/
+
+# Backups locais de configuração do host (gerados; contêm conteúdo do sistema)
+packages/backups/
+
+# Logs e temporários
+build.log
+*.log.tmp

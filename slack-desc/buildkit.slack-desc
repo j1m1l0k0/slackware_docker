@@ -1,0 +1,21 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+         |-----handy-ruler------------------------------------------------------|
+buildkit: buildkit (build engine for Docker/OCI)
+buildkit:
+buildkit: BuildKit is a modern build engine for container images, based on
+buildkit: Moby and used by Docker as the default builder. It can run as a
+buildkit: standalone daemon (buildkitd) and exposes the buildctl command line.
+buildkit:
+buildkit: This package provides the buildkitd daemon and the buildctl CLI,
+buildkit: built from the official moby/buildkit sources for Slackware 15.0
+buildkit: (buildkitd with seccomp support, linked to the Slackware libseccomp;
+buildkit: no systemd).
+buildkit:
+buildkit:
+buildkit: Home: https://github.com/moby/buildkit
