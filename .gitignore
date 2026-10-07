@@ -7,6 +7,9 @@ dl/
 # Backups locais de configuração do host (gerados; contêm conteúdo do sistema)
 packages/backups/
 
+# Logs de execução do instalador
+packages/install-dialog.log
+
 # Logs e temporários
 build.log
 *.log.tmp
