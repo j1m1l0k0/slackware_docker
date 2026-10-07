@@ -1,4 +1,5 @@
 # docker-slackware
+# Author: j1m1l0k0 - 2026
 
 Build system + instalador **específico para Slackware 15.0** que compila o
 Docker Engine (Moby), Docker CLI, containerd, runc e BuildKit **a partir dos

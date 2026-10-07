@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/diagnostics.sh
+# Author: j1m1l0k0 - 2026
 # Gera docker-diagnostics.txt com as informações clássicas de diagnóstico
 # do Slackware (NÃO usa journalctl/systemd):
 #   /var/log/docker.log, ps aux | grep dockerd, /proc/cgroups, mounts,

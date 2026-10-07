@@ -1,6 +1,7 @@
 #!/bin/bash
 # ===========================================================================
 # /etc/rc.d/rc.docker - Docker daemon (dockerd) para Slackware 15.0
+# Author: j1m1l0k0 - 2026
 # Modelo tradicional de init do Slackware (sem systemd).
 #
 # Uso:

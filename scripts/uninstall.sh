@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/uninstall.sh
+# Author: j1m1l0k0 - 2026
 # Remove os pacotes docker-slackware (removepkg), o rc.docker, o bloco do
 # rc.local e o sysctl docker-slackware, SEM apagar /var/lib/docker nem
 # /var/lib/containerd (imagens/volumes/containers ficam preservados) a menos

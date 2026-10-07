@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/check-system.sh
+# Author: j1m1l0k0 - 2026
 # Verifica o sistema antes do build/instalação:
 #   - Slackware 15.0, arquitetura
 #   - kernel (namespaces, cgroups, overlay, bridge, netfilter, iptables,

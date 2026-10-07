@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/install.sh
+# Author: j1m1l0k0 - 2026
 # Instala os pacotes .txz gerados usando installpkg/removepkg do Slackware,
 # configura o host e (opcionalmente) inicia o Docker e roda os testes.
 #

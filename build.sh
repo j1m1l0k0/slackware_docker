@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - build.sh (ponto de entrada)
+# Author: j1m1l0k0 - 2026
 #
 # Pipeline completo:
 #   1. check-system.sh     (Slackware 15.0, kernel, cgroup, deps)

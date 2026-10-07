@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/build-moby.sh
+# Author: j1m1l0k0 - 2026
 # Compila Docker Engine (Moby) $ENGINE_VERSION a partir do fonte oficial.
 #
 # O fluxo oficial usa `docker buildx bake`; aqui replicamos EXATAMENTE os

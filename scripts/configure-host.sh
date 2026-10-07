@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/configure-host.sh
+# Author: j1m1l0k0 - 2026
 # Configura o Slackware 15.0 para rodar o Docker corretamente:
 #   - módulos do kernel (carregados; persistência via rc.docker no boot)
 #   - sysctl (/etc/sysctl.d/99-docker.conf - Slackware aplica via rc.S)

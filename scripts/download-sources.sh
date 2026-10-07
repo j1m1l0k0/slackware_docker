@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/download-sources.sh
+# Author: j1m1l0k0 - 2026
 # Baixa os fontes oficiais (git, tags exatas) e VERIFICA o commit SHASUM de
 # cada checkout contra a matriz em config/versions.conf.
 # Também prepara o layout GOPATH do docker/cli (que usa vendor.mod, sem

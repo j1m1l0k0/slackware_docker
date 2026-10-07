@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/build-containerd.sh
+# Author: j1m1l0k0 - 2026
 # Compila containerd $CONTAINERD_VERSION (estático, como a distribuição
 # oficial) a partir do fonte oficial e gera
 #   packages/containerd-<version>-<arch>-1.txz

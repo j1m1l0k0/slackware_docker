@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/lib.sh
+# Author: j1m1l0k0 - 2026
 # Funções comuns: ambiente, versões, logging, root, packaging.
 # Todas as funções são carregadas via `source lib.sh` pelos demais scripts.
 # ===========================================================================

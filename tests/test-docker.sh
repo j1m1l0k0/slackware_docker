@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - tests/test-docker.sh
+# Author: j1m1l0k0 - 2026
 # Testes automáticos de pós-instalação (sem systemd):
 #   docker version, docker info (cgroup/storage), hello-world,
 #   docker buildx version e um build Dockerfile mínimo com `docker build`.

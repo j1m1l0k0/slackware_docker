@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/build-cli.sh
+# Author: j1m1l0k0 - 2026
 # Compila o Docker CLI $CLI_VERSION (docker) a partir do fonte oficial.
 # O repositório docker/cli NÃO tem go.mod (usa vendor.mod + vendor/): o
 # fluxo oficial compila em modo GOPATH. Reproduzimos isso aqui:

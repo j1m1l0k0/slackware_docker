@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/build-buildx.sh
+# Author: j1m1l0k0 - 2026
 # Compila o plugin de CLI docker/buildx $BUILDX_VERSION (fonte oficial) e
 # deixa o binário em $SRC_DIR/buildx/bin/buildx. Ele é empacotado dentro do
 # pacote docker-cli (em /usr/libexec/docker/cli-plugins/docker-buildx),

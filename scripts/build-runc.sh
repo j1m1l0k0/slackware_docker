@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/build-runc.sh
+# Author: j1m1l0k0 - 2026
 # Compila runc $RUNC_VERSION a partir do fonte oficial e gera
 #   packages/runc-<version>-<arch>-1.txz
 # Build tags oficiais: "seccomp urfave_cli_no_docs libpathrs"

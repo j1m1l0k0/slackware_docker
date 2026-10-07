@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/build-buildkit.sh
+# Author: j1m1l0k0 - 2026
 # Compila BuildKit $BUILDKIT_VERSION (buildkitd + buildctl) do fonte
 # oficial e gera packages/buildkit-<version>-<arch>-1.txz em /usr/bin.
 #

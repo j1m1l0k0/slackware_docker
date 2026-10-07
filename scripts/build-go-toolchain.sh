@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ===========================================================================
 # docker-slackware - scripts/build-go-toolchain.sh
+# Author: j1m1l0k0 - 2026
 # Baixa e instala o toolchain Go oficial em ~/docker-slackware/toolchain/go
 # (isolado do sistema), com verificação de sha256 a partir do JSON oficial
 # de go.dev/dl. NENHUM binário é instalado em diretórios do sistema.
